@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const choices = document.querySelectorAll('.choice');
     const resultDiv = document.getElementById('result');
+    const scoreDiv = document.getElementById('score');
 
     choices.forEach(choice => {
         choice.addEventListener('click', () => {
@@ -14,8 +15,10 @@ document.addEventListener('DOMContentLoaded', () => {
             })
             .then(response => response.json())
             .then(data => {
-                const { user_choice, computer_choice, result } = data;
+                const { user_choice, computer_choice, result, user_score, computer_score } = data;
                 resultDiv.innerHTML = `You chose ${user_choice}, computer chose ${computer_choice}. You ${result}!`;
+                scoreDiv.innerHTML = `${user_score}:${computer_score}.`;
+
             });
         });
     });
